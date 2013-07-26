@@ -1588,8 +1588,12 @@ img#wpstats {
 	body .site {
 		padding: 0 40px;
 		padding: 0 2.857142857rem;
+		/*
 		margin-top: 48px;
 		margin-top: 3.428571429rem;
+		*/
+		margin-top: 28px;
+		margin-top: 2em;
 		margin-bottom: 48px;
 		margin-bottom: 3.428571429rem;
 		box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
