@@ -29,10 +29,10 @@
 				</div><!-- .comments-link -->
 			<?php endif; // comments_open() ?>
 		</header><!-- .entry-header -->
-
-		<?php if ( is_search() ) : // Only display Excerpts for Search ?>
+<!--SingleX-->
+		<?php if ( is_home() || is_category() || is_tag() || is_search() ) :?>
 		<div class="entry-summary">
-			<?php the_excerpt(); ?>
+			<?php echo mb_strimwidth(strip_tags(apply_filters('the_content',$post->post_content)),0,320,"..."); //截断320个字符输出?>
 		</div><!-- .entry-summary -->
 		<?php else : ?>
 		<div class="entry-content">
