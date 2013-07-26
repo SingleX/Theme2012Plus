@@ -23,13 +23,15 @@
 				<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'twentytwelve' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
 			</h1>
 			<?php endif; // is_single() ?>
-			<?php if ( comments_open() ) : ?>
-				<div class="comments-link">
-					<?php comments_popup_link( '<span class="leave-reply">' . __( 'Leave a reply', 'twentytwelve' ) . '</span>', __( '1 Reply', 'twentytwelve' ), __( '% Replies', 'twentytwelve' ) ); ?>
-				</div><!-- .comments-link -->
-			<?php endif; // comments_open() ?>
+			<hr/>
+			<div class="entry-meta">
+				<?php the_time('Y.m.d'); ?>
+				<?php the_author(); ?>
+				<?php if ( comments_open() ) : //修改评论显示?>
+					<?php comments_popup_link('No Reply', '1 Reply', '% Replies'); ?>
+				<?php endif; // comments_open() ?>
+			</div><!-- .entry-meta -->
 		</header><!-- .entry-header -->
-<!--SingleX-->
 		<?php if ( is_home() || is_category() || is_tag() || is_search() ) :?>
 		<div class="entry-summary">
 			<?php echo mb_strimwidth(strip_tags(apply_filters('the_content',$post->post_content)),0,320,"..."); //截断320个字符输出?>
@@ -40,9 +42,9 @@
 			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'twentytwelve' ), 'after' => '</div>' ) ); ?>
 		</div><!-- .entry-content -->
 		<?php endif; ?>
-
 		<footer class="entry-meta">
-			<?php twentytwelve_entry_meta(); ?>
+			<?php the_category(', '); ?>
+			<?php the_tags(); ?>
 			<?php edit_post_link( __( 'Edit', 'twentytwelve' ), '<span class="edit-link">', '</span>' ); ?>
 			<?php if ( is_singular() && get_the_author_meta( 'description' ) && is_multi_author() ) : // If a user has filled out their description and this is a multi-author blog, show a bio on their entries. ?>
 				<div class="author-info">

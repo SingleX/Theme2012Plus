@@ -132,7 +132,8 @@ hr {
 	background-color: #ccc;
 	border: 0;
 	height: 1px;
-	margin: 24px;
+/*	margin: 24px; */
+	margin: 24px, 0, 24px, 0;
 	margin-bottom: 1.714285714rem;
 }
 sub,
@@ -525,6 +526,7 @@ a:hover {
 	padding: 0 1.714285714rem;
 	background-color: #fff;
 }
+/*
 .site-content {
 	margin: 24px 0 0;
 	margin: 1.714285714rem 0 0;
@@ -533,6 +535,7 @@ a:hover {
 	margin: 24px 0 0;
 	margin: 1.714285714rem 0 0;
 }
+*/
 
 /* Header */
 .site-header {
@@ -574,8 +577,10 @@ a:hover {
 
 /* Navigation Menu */
 .main-navigation {
-	margin-top: 24px;
-	margin-top: 1.714285714rem;
+/*
+	margin-top: 8px;
+	margin-top: 0.571428571rem;
+*/
 	text-align: center;
 }
 .main-navigation li {

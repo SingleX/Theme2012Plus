@@ -448,3 +448,53 @@ function twentytwelve_customize_preview_js() {
 	wp_enqueue_script( 'twentytwelve-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array( 'customize-preview' ), '20120827', true );
 }
 add_action( 'customize_preview_init', 'twentytwelve_customize_preview_js' );
+
+
+/**
+ * 站点信息统计，替代post-views插件
+ * 
+ * @author SingleX
+ */
+function lo_all_view(){ //本站总计浏览次数
+    global $wpdb;
+    $count=0;
+    $views= $wpdb->get_results("SELECT * FROM $wpdb->postmeta WHERE meta_key='views'"); 
+    foreach($views as $key=>$value)
+    {
+        $meta_value=$value->meta_value;
+        if($meta_value!='')
+        {
+            $count+=(int)$meta_value;
+        }
+    }
+    return $count;
+}
+function custom_the_views($post_id, $echo=true, $views=' views') {//文章浏览次数
+	$count_key = 'views';
+	$count = get_post_meta($post_id, $count_key, true);
+	if ($count == '') {
+		delete_post_meta($post_id, $count_key);
+		add_post_meta($post_id, $count_key, '0');
+		$count = '0';
+	}
+	if ($echo)
+		echo number_format_i18n($count) . $views;
+	else
+		return number_format_i18n($count) . $views;
+}
+function set_post_views() {
+	global $post;
+	$post_id = $post->ID;
+	$count_key = 'views';
+	$count = get_post_meta($post_id, $count_key, true);
+	if (is_single() || is_page()) {
+		if ($count == '') {
+			delete_post_meta($post_id, $count_key);
+			add_post_meta($post_id, $count_key, '0');
+		} else {
+			update_post_meta($post_id, $count_key, $count + 1);
+		}
+	}
+}
+add_action('get_header', 'set_post_views');
+
