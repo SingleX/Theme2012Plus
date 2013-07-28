@@ -25,10 +25,10 @@
 			<?php endif; // is_single() ?>
 			<hr/>
 			<div class="entry-meta">
-				<?php the_time('Y.m.d'); ?>
-				<?php the_author(); ?>
+				<i class="icon-calendar"></i> <?php the_time('Y.m.d'); ?>&nbsp;&nbsp;
+				<i class="icon-user"></i> <?php the_author(); ?>&nbsp;&nbsp;
 				<?php if ( comments_open() ) : //修改评论显示?>
-					<?php comments_popup_link('No Reply', '1 Reply', '% Replies'); ?>
+					<i class="icon-comment"></i> <?php comments_popup_link('No Reply', '1 Reply', '% Replies'); ?>
 				<?php endif; // comments_open() ?>
 			</div><!-- .entry-meta -->
 		</header><!-- .entry-header -->
