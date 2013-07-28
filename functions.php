@@ -332,7 +332,7 @@ function twentytwelve_entry_meta() {
 	$categories_list = get_the_category_list( __( ', ', 'twentytwelve' ) );
 
 	// Translators: used between list items, there is a space after the comma.
-	$tag_list = get_the_tag_list( '', __( ', ', 'twentytwelve' ) );
+	$tag_list = get_the_tag_list( '', __( ' , ', 'twentytwelve' ) );
 
 	/*用不到的：日期，作者
 	$date = sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a>',
@@ -359,7 +359,7 @@ function twentytwelve_entry_meta() {
 		$utility_text = __( 'This entry was posted on %3$s<span class="by-author"> by %4$s</span>.', 'twentytwelve' );
 	}
 	*/
-	$utility_text = __( '<i class="icon-folder-open"></i> %1$s&nbsp;&nbsp;&nbsp;<i class="icon-tags"></i> %2$s', 'twentytwelve' );
+	$utility_text = __( '<span class="info-folder-open"><i class="icon-folder-open"></i> %1$s</span><span class="info-tags"><i class="icon-tags"></i> %2$s<span>', 'twentytwelve' );
 	printf(
 		$utility_text,
 		$categories_list,

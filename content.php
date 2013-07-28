@@ -25,11 +25,12 @@
 			<?php endif; // is_single() ?>
 			<hr/>
 			<div class="entry-meta">
-				<i class="icon-calendar"></i> <?php the_time('Y.m.d'); ?>&nbsp;&nbsp;
-				<i class="icon-user"></i> <?php the_author(); ?>&nbsp;&nbsp;
+				<span class="info-calendar"><i class="icon-calendar"></i> <?php the_time('Y.m.d'); ?></span>
+				<span class="info-user"><i class="icon-user"></i> <?php the_author(); ?></span>
 				<?php if ( comments_open() ) : //修改评论显示?>
-					<i class="icon-comment"></i> <?php comments_popup_link('No Reply', '1 Reply', '% Replies'); ?>
+					<span class="info-comment"><i class="icon-comment"></i> <?php comments_popup_link('No Reply', '1 Reply', '% Replies'); ?></span>
 				<?php endif; // comments_open() ?>
+				<div class="clear"></div>
 			</div><!-- .entry-meta -->
 		</header><!-- .entry-header -->
 		<?php if ( is_home() || is_category() || is_tag() || is_search() ) :?>
@@ -44,7 +45,7 @@
 		<?php endif; ?>
 		<footer class="entry-meta">
 			<?php twentytwelve_entry_meta(); ?>
-			<!--
+			<!--注掉了，用原生函数
 			<?php the_category(', '); ?>
 			<?php the_tags(); ?>
 			-->
