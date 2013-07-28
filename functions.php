@@ -332,8 +332,9 @@ function twentytwelve_entry_meta() {
 	$categories_list = get_the_category_list( __( ', ', 'twentytwelve' ) );
 
 	// Translators: used between list items, there is a space after the comma.
-	$tag_list = get_the_tag_list( '', __( ', ', 'twentytwelve' ) );
+	$tag_list = get_the_tag_list( '', __( ' ', 'twentytwelve' ) );
 
+	/*用不到的：日期，作者
 	$date = sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a>',
 		esc_url( get_permalink() ),
 		esc_attr( get_the_time() ),
@@ -346,8 +347,10 @@ function twentytwelve_entry_meta() {
 		esc_attr( sprintf( __( 'View all posts by %s', 'twentytwelve' ), get_the_author() ) ),
 		get_the_author()
 	);
-
+	*/
+	
 	// Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's name.
+	/*修改文章信息显示（1：分类；2：标签；3：日期；4：作者）
 	if ( $tag_list ) {
 		$utility_text = __( 'This entry was posted in %1$s and tagged %2$s on %3$s<span class="by-author"> by %4$s</span>.', 'twentytwelve' );
 	} elseif ( $categories_list ) {
@@ -355,13 +358,16 @@ function twentytwelve_entry_meta() {
 	} else {
 		$utility_text = __( 'This entry was posted on %3$s<span class="by-author"> by %4$s</span>.', 'twentytwelve' );
 	}
-
+	*/
+	$utility_text = __( '%1$s %2$s', 'twentytwelve' );
 	printf(
 		$utility_text,
 		$categories_list,
-		$tag_list,
+		$tag_list
+		/*
 		$date,
 		$author
+		*/
 	);
 }
 endif;
