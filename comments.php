@@ -31,23 +31,15 @@ if ( post_password_required() )
 	}?>
 	
 	<?php if ( have_comments() ) : ?>
-	<!-- 重写样式
-		<h2 class="comments-title">
-			<?php
-				printf( _n( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'twentytwelve' ),
-					number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
-			?>
-		</h2>
-	-->
 		<div class="comments-title">
 			<span class="comment-total"><?php comments_number('No Response', '1 Response', '% Responses' );?></span>
 			<span class="comment-part">Comment<?php echo (' (' . (count($comments)-count($trackbacks)) . ')'); ?></span>
 			<span class="ping-part">Trackback<?php echo (' (' . count($trackbacks) . ')');?></span>
 			<div class="clear"></div>
 		</div>
-
 		<ol class="commentlist">
 			<?php wp_list_comments( array( 'callback' => 'twentytwelve_comment', 'style' => 'ol' ) ); ?>
+			<?php //wp_list_comments( 'type=comment&callback=twentytwelve_comment&max_depth=10000' ); ?>
 		</ol><!-- .commentlist -->
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>

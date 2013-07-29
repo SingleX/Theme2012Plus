@@ -1,4 +1,4 @@
-﻿/*
+/*
 Theme Name: Theme2012Plus
 Theme URI: http://www.singlex.net/
 Author: SingleX
@@ -1194,6 +1194,7 @@ article.format-quote .entry-content blockquote {
 .ping-part {
 	float: right;
 	margin-left: 20px;
+	margin-left: 1.428571429rem;
 	font-size: 13px;
 	font-size: 0.928571429rem;
 	color: #757575;
@@ -1202,6 +1203,38 @@ article.format-quote .entry-content blockquote {
 	margin: 24px 0;
 	margin: 1.714285714rem 0;
 }
+.comment-gavatar {
+	float: left;
+	line-height: 0;
+	margin: 0 20px 0 0;
+	margin: 0 1.428571429rem 0 0;
+	padding-right: 20px;
+	padding-right: 1.428571429rem;
+	border-right: 1px solid #d1d9db;
+}
+.comment-text {
+	overflow: hidden;
+}
+.comment-info {
+	line-height: 1.42857143;
+}
+.comment-info  span{
+
+}
+.comment-info p {
+	display: inline;
+}
+.fn span {
+	color: #fff;
+	background-color: #21759b;
+	background-image: none;
+	border: 1px solid #1f6f93;
+	border-radius: 2px;
+	box-shadow: none;
+	padding: 0;
+}
+
+/***************SingleX*********************/
 .comments-area article header {
 	margin: 0 0 48px;
 	margin: 0 0 3.428571429rem;

@@ -283,35 +283,40 @@ function twentytwelve_comment( $comment, $args, $depth ) {
 	?>
 	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
 		<article id="comment-<?php comment_ID(); ?>" class="comment">
-			<header class="comment-meta comment-author vcard">
-				<?php
-					echo get_avatar( $comment, 44 );
-					printf( '<cite class="fn">%1$s %2$s</cite>',
+			<!-- 重写评论样式 -->
+			<div class="comment-gavatar">
+				<?php echo get_avatar( $comment, 44 );?>
+			</div>
+			<div class="comment-text">
+				<?php //显示“评论作者”
+					printf( '<div class="comment-info"><span class="fn">%1$s %2$s</span>',
 						get_comment_author_link(),
 						// If current post author is also comment author, make it known visually.
 						( $comment->user_id === $post->post_author ) ? '<span> ' . __( 'Post author', 'twentytwelve' ) . '</span>' : ''
 					);
-					printf( '<a href="%1$s"><time datetime="%2$s">%3$s</time></a>',
-						esc_url( get_comment_link( $comment->comment_ID ) ),
+					//显示“评论内容”
+					echo ' : ';
+					comment_text();
+					echo '</div>';
+				?>
+				<div class="entry-meta">
+					<?php //显示“日期时间”
+						printf( '<span class="comment-date"><time datetime="%1$s">%2$s</time>',
+						//esc_url( get_comment_link( $comment->comment_ID ) ),去掉获取的文章评论链接
 						get_comment_time( 'c' ),
 						/* translators: 1: date, 2: time */
-						sprintf( __( '%1$s at %2$s', 'twentytwelve' ), get_comment_date(), get_comment_time() )
+						sprintf( __( '%1$s at %2$s', 'twentytwelve' ), get_comment_date('Y.m.d'), get_comment_time() )
 					);
-				?>
-			</header><!-- .comment-meta -->
-
+					//显示“编辑”
+					edit_comment_link( __( 'Edit', 'twentytwelve' ), '', '</span>' );
+					//显示“回复”
+					comment_reply_link( array_merge( $args, array('before' => '<span class="comment-reply">', 'reply_text' => __( 'Reply', 'twentytwelve' ), 'after' => '</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) );
+					?>
+				</div>
+			</div>
 			<?php if ( '0' == $comment->comment_approved ) : ?>
 				<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'twentytwelve' ); ?></p>
 			<?php endif; ?>
-
-			<section class="comment-content comment">
-				<?php comment_text(); ?>
-				<?php edit_comment_link( __( 'Edit', 'twentytwelve' ), '<p class="edit-link">', '</p>' ); ?>
-			</section><!-- .comment-content -->
-
-			<div class="reply">
-				<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'twentytwelve' ), 'after' => ' <span>&darr;</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-			</div><!-- .reply -->
 		</article><!-- #comment-## -->
 	<?php
 		break;
@@ -503,4 +508,3 @@ function set_post_views() {
 	}
 }
 add_action('get_header', 'set_post_views');
-
