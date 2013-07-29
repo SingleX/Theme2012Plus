@@ -21,7 +21,7 @@ get_header(); ?>
 					<span class="nav-previous"><?php previous_post_link( '%link', '<i class="icon-chevron-left"></i>%title' ); ?></span>
 					<span class="nav-next"><?php next_post_link( '%link', '%title<i class="icon-chevron-right"></i>' ); ?></span>
 				</nav><!-- .nav-single -->
-
+				<hr/>
 				<?php comments_template( '', true ); ?>
 
 			<?php endwhile; // end of the loop. ?>

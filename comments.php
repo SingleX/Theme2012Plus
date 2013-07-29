@@ -22,14 +22,29 @@ if ( post_password_required() )
 <div id="comments" class="comments-area">
 
 	<?php // You can start editing here -- including this comment! ?>
-
+	
+	<?php //trackbacks计数分离
+	if (function_exists('wp_list_comments')) {
+		$trackbacks = $comments_by_type['pings'];
+	} else {
+		$trackbacks = $wpdb->get_results($wpdb->prepare("SELECT * FROM $wpdb->comments WHERE comment_post_ID = %d AND comment_approved = '1' AND (comment_type = 'pingback' OR comment_type = 'trackback') ORDER BY comment_date", $post->ID));
+	}?>
+	
 	<?php if ( have_comments() ) : ?>
+	<!-- 重写样式
 		<h2 class="comments-title">
 			<?php
 				printf( _n( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'twentytwelve' ),
 					number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
 			?>
 		</h2>
+	-->
+		<div class="comments-title">
+			<span class="comment-total"><?php comments_number('No Response', '1 Response', '% Responses' );?></span>
+			<span class="comment-part">Comment<?php echo (' (' . (count($comments)-count($trackbacks)) . ')'); ?></span>
+			<span class="ping-part">Trackback<?php echo (' (' . count($trackbacks) . ')');?></span>
+			<div class="clear"></div>
+		</div>
 
 		<ol class="commentlist">
 			<?php wp_list_comments( array( 'callback' => 'twentytwelve_comment', 'style' => 'ol' ) ); ?>

@@ -1187,6 +1187,17 @@ article.format-quote .entry-content blockquote {
 	line-height: 1.5;
 	font-weight: normal;
 }
+.comment-total {
+	float: left;
+}
+.comment-part,
+.ping-part {
+	float: right;
+	margin-left: 20px;
+	font-size: 13px;
+	font-size: 0.928571429rem;
+	color: #757575;
+}
 .comments-area article {
 	margin: 24px 0;
 	margin: 1.714285714rem 0;
