@@ -414,8 +414,10 @@ img.wp-smiley,
 /* Navigation */
 .site-content nav {
 	clear: both;
-	line-height: 2;
+	line-height: 3;
 	overflow: hidden;
+	border-top: 4px double #ededed;
+	border-bottom: 4px double #ededed;
 }
 #nav-above {
 	padding: 24px 0;
@@ -440,8 +442,8 @@ img.wp-smiley,
 }
 .nav-single + .comments-area,
 #comment-nav-above {
-	margin: 48px 0;
-	margin: 3.428571429rem 0;
+	margin: 24px 0;
+	margin: 1.714285714rem 0;
 }
 
 /* Author profiles */
@@ -708,8 +710,8 @@ footer[role="contentinfo"] a:hover {
 	margin-right: 0.714285714rem;
 }
 .entry-header {
-	margin-bottom: 16px;
-	margin-bottom: 1.1428571426rem;
+	margin-bottom: 4px;
+	margin-bottom: 0.285714285rem;
 }
 .entry-header img.wp-post-image {
 	margin-bottom: 24px;
@@ -970,11 +972,8 @@ img.aligncenter {
 	padding: 6px 10px 6px 0;
 }
 .site-content article {
-	border-bottom: 4px double #ededed;
-	margin-bottom: 24px;
-	margin-bottom: 1.714285714rem;
-	padding-bottom: 24px;
-	padding-bottom: 1.714285714rem;
+	padding-bottom: 36px;
+	padding-bottom: 2.571428571rem;
 	word-wrap: break-word;
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
@@ -1180,8 +1179,8 @@ article.format-quote .entry-content blockquote {
 -------------------------------------------------------------- */
 
 .comments-title {
-	margin-bottom: 48px;
-	margin-bottom: 3.428571429rem;
+	margin-bottom: 24px;
+	margin-bottom: 1.714285714rem;
 	font-size: 16px;
 	font-size: 1.142857143rem;
 	line-height: 1.5;
@@ -1200,10 +1199,12 @@ article.format-quote .entry-content blockquote {
 	color: #757575;
 }
 .comments-area article {
-	margin: 24px 0;
-	margin: 1.714285714rem 0;
+	margin: 12px 0;
+	margin: 0.85714285rem 0;
+	padding-bottom: 4px;
+	padding-bottom: 0.285714283rem;
 }
-.comment-gavatar {
+.comment-gravatar {
 	float: left;
 	line-height: 0;
 	margin: 0 20px 0 0;
@@ -1211,6 +1212,16 @@ article.format-quote .entry-content blockquote {
 	padding-right: 20px;
 	padding-right: 1.428571429rem;
 	border-right: 1px solid #d1d9db;
+}
+#comments ol li {
+	border-bottom: 4px double #ededed;
+}
+#comments ol li ol.children li  {
+	border-bottom: 0;
+}
+#comments ol li ol.children li .comment-gravatar {
+	margin: 0 20px 0 65px;
+	margin: 0 1.428571429rem 0 4.642857144rem;
 }
 .comment-text {
 	overflow: hidden;
@@ -1233,8 +1244,14 @@ article.format-quote .entry-content blockquote {
 	box-shadow: none;
 	padding: 0;
 }
+.comment-date {
+	float: left;
+}
+.comment-reply {
+	float: right;
+}
 
-/***************SingleX*********************/
+/***************SingleX 用不上了
 .comments-area article header {
 	margin: 0 0 48px;
 	margin: 0 0 3.428571429rem;
@@ -1323,6 +1340,7 @@ a.comment-edit-link:hover {
 	margin-bottom: 24px;
 	margin-bottom: 1.714285714rem;
 }
+用不上了 */
 
 /* Comment form */
 #respond {
@@ -1647,8 +1665,8 @@ img#wpstats {
 		width: auto;
 	}
 	.commentlist .children {
-		margin-left: 48px;
-		margin-left: 3.428571429rem;
+		margin: 0;
+		padding: 0;
 	}
 }
 
@@ -1660,10 +1678,6 @@ img#wpstats {
 	body .site {
 		padding: 0 40px;
 		padding: 0 2.857142857rem;
-		/*
-		margin-top: 48px;
-		margin-top: 3.428571429rem;
-		*/
 		margin-top: 28px;
 		margin-top: 2em;
 		margin-bottom: 48px;

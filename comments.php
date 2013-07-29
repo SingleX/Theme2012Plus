@@ -41,7 +41,7 @@ if ( post_password_required() )
 			<?php wp_list_comments( array( 'callback' => 'twentytwelve_comment', 'style' => 'ol' ) ); ?>
 			<?php //wp_list_comments( 'type=comment&callback=twentytwelve_comment&max_depth=10000' ); ?>
 		</ol><!-- .commentlist -->
-
+		
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-below" class="navigation" role="navigation">
 			<h1 class="assistive-text section-heading"><?php _e( 'Comment navigation', 'twentytwelve' ); ?></h1>
