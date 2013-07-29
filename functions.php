@@ -305,7 +305,7 @@ function twentytwelve_comment( $comment, $args, $depth ) {
 						//esc_url( get_comment_link( $comment->comment_ID ) ),去掉获取的文章评论链接
 						get_comment_time( 'c' ),
 						/* translators: 1: date, 2: time */
-						sprintf( __( '%1$s at %2$s', 'twentytwelve' ), get_comment_date('Y.m.d'), get_comment_time() )
+						sprintf( __( '%1$s at %2$s', 'twentytwelve' ), get_comment_date('Y/m/d'), get_comment_time('H:m') )
 					);
 					//显示“编辑”
 					edit_comment_link( __( 'Edit', 'twentytwelve' ), '', '</span>' );
