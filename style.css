@@ -684,6 +684,10 @@ footer[role="contentinfo"] a:hover {
 -------------------------------------------------------------- */
 
 .entry-meta {
+	font-size: 13px;
+	font-size: 0.928571429rem;
+	line-height: 1.846153846;
+	color: #757575;
 	clear: both;
 }
 /* 添加对 class="info-calendar|info-user|info-comment"的控制 */
