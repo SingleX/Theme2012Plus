@@ -2,14 +2,12 @@
 /**
  * The template for displaying Comments.
  *
- * The area of the page that contains both current comments
- * and the comment form. The actual display of comments is
- * handled by a callback to twentytwelve_comment() which is
- * located in the functions.php file.
- *
+ * 本页面包含当前评论和评论框
+ * 评论显示功能是调用functions.php中的twentytwelve_comment()函数实现
  * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
+ * @subpackage Theme2012Plus
+ * @version 1.0
+ * @authon SingleX
  */
 
 /*
