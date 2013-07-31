@@ -46,8 +46,7 @@ if ( post_password_required() )
 			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'twentytwelve' ) ); ?></div>
 			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'twentytwelve' ) ); ?></div>
 		</nav>
-		<?php endif; // check for comment navigation ?>
-
+		<?php endif; // check for comment navigation ?>		
 		<?php
 		/* If there are no comments and comments are closed, let's leave a note.
 		 * But we only want the note on posts and pages that had comments in the first place.
@@ -55,9 +54,21 @@ if ( post_password_required() )
 		if ( ! comments_open() && get_comments_number() ) : ?>
 		<p class="nocomments"><?php _e( 'Comments are closed.' , 'twentytwelve' ); ?></p>
 		<?php endif; ?>
-
 	<?php endif; // have_comments() ?>
-
-	<?php comment_form(); ?>
+	
+	<?php //修改评论表单样式，此函数位于wp-includes/comment-template.php
+	$args = array(
+		'comment_field'        => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
+		'comment_notes_before' => '',
+		'comment_notes_after'  => '',
+		'id_form'              => 'commentform',
+		'id_submit'            => 'submit',
+		'title_reply'          => __( 'Leave a Reply' ),
+		'title_reply_to'       => __( 'Leave a Reply to %s' ),
+		'cancel_reply_link'    => __( 'Cancel reply' ),
+		'label_submit'         => __( 'Post Comment' ),
+	);
+	comment_form($args);
+	?>
 
 </div><!-- #comments .comments-area -->
