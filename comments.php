@@ -58,17 +58,18 @@ if ( post_password_required() )
 	
 	<?php //修改评论表单样式，此函数位于wp-includes/comment-template.php
 	$args = array(
-		'comment_field'        => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
+		'comment_field'          => '<p class="comment-form-comment"><label class="wp-smilies">' . sprintf( __( '%s' ), wp_smilies() ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"};"></textarea>' . 
+									'<script type="text/javascript">document.getElementById("comment").onkeydown = function (moz_ev){var ev = null;if (window.event){ev = window.event;}else{ev = moz_ev;}if (ev != null && ev.ctrlKey && ev.keyCode == 13){document.getElementById("submit").click();}}</script></p>',
 		'comment_notes_before' => '',
 		'comment_notes_after'  => '',
-		'id_form'              => 'commentform',
-		'id_submit'            => 'submit',
-		'title_reply'          => __( 'Leave a Reply' ),
-		'title_reply_to'       => __( 'Leave a Reply to %s' ),
-		'cancel_reply_link'    => __( 'Cancel reply' ),
-		'label_submit'         => __( 'Post Comment' ),
 	);
 	comment_form($args);
 	?>
-
+	<script type="text/javascript">
+		function grin(tag){var myField;tag=' '+tag+' ';if(document.getElementById('comment')&&document.getElementById('comment').type=='textarea'){myField=document.getElementById('comment');}else{return false;}
+		if(document.selection){myField.focus();sel=document.selection.createRange();sel.text=tag;myField.focus();}
+		else if(myField.selectionStart||myField.selectionStart=='0'){var startPos=myField.selectionStart;var endPos=myField.selectionEnd;var cursorPos=endPos;myField.value=myField.value.substring(0,startPos)+tag+myField.value.substring(endPos,myField.value.length);cursorPos+=tag.length;myField.focus();myField.selectionStart=cursorPos;myField.selectionEnd=cursorPos;}
+		else{myField.value+=tag;myField.focus();}}
+	</script>
+	
 </div><!-- #comments .comments-area -->

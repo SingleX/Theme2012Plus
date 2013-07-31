@@ -464,3 +464,34 @@ function set_post_views() {
 	}
 }
 add_action('get_header', 'set_post_views');
+
+function theme2012plus_customize_fields($fields) { //评论框昵称，邮件，网址属性修改
+	$req = get_option( 'require_name_email' );
+	$aria_req = ( $req ? " aria-required='true'" : '' );
+	$fields =  array(
+		'author' => '<p class="comment-form-author"><input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' />' .
+					'<label for="author">' . __( 'Name' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label></p>',
+		'email'  => '<p class="comment-form-email"><input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' />' .
+					'<label for="email">' . __( 'Email' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label></p>',
+		'url'    => '<p class="comment-form-url"><input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />' .
+					'<label for="url">' . __( 'Website' ) . '</label></p>',
+	);
+	return $fields;
+}
+add_filter('comment_form_default_fields', 'theme2012plus_customize_fields');
+
+add_filter('smilies_src','theme2012plus_smilies_src',1,10);function theme2012plus_smilies_src ($img_src, $img, $siteurl){return get_bloginfo('template_directory').'/images/smilies/'.$img;}
+function wp_smilies() { //添加自定义表情
+	global $wpsmiliestrans;
+	if ( !get_option('use_smilies') or (empty($wpsmiliestrans))) return;
+	$smilies = array_unique($wpsmiliestrans);
+	$link='';
+	foreach ($smilies as $key => $smile) {
+		$file = get_bloginfo('template_directory').'/images/smilies/'.$smile;
+		$value = " ".$key." ";
+		$img = "<img src=\"{$file}\" alt=\"{$smile}\"/>";
+		$imglink = htmlspecialchars($img);
+		$link .= "<a style=\"cursor:pointer\" onclick=\"grin('{$key}')\">{$img}</a>&nbsp;";
+	}
+    return $link;
+}
