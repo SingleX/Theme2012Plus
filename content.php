@@ -27,6 +27,7 @@
 			<div class="entry-meta">
 				<span class="info-calendar"><i class="icon-calendar"></i> <?php the_time('Y.m.d'); ?></span>
 				<span class="info-user"><i class="icon-user"></i> <?php the_author(); ?></span>
+				<span class="info-views"><i class="icon-eye-open"></i> <?php get_post_views($post->ID); ?></span>
 				<?php if ( comments_open() ) : //修改评论显示?>
 					<span class="info-comment"><i class="icon-comment"></i> <?php comments_popup_link('No Reply', '1 Reply', '% Replies'); ?></span>
 				<?php endif; // comments_open() ?>

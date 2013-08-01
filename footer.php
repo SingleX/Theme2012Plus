@@ -13,6 +13,7 @@
 	</div><!-- #main .wrapper -->
 	<footer id="colophon" role="contentinfo">
 		<div class="site-info">
+			总访问量 : <?php echo lo_all_view(); ?>
 			<?php do_action( 'twentytwelve_credits' ); ?>
 			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'twentytwelve' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'twentytwelve' ); ?>"><?php printf( __( 'Proudly powered by %s', 'twentytwelve' ), 'WordPress' ); ?></a>
 		</div><!-- .site-info -->
