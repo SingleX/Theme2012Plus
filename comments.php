@@ -58,7 +58,7 @@ if ( post_password_required() )
 	
 	<?php //修改评论表单样式，此函数位于wp-includes/comment-template.php
 	$args = array(
-		'comment_field'        => '<p class="comment-form-comment"><label class="wp-smilies">' . sprintf( __( '%s' ), wp_smilies() ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"};"></textarea>' . 
+		'comment_field'        => '<p class="comment-form-comment"><label class="wp-smilies">' . sprintf( __( '%s' ), wp_smilies() ) . '</label><textarea id="comment" name="comment" cols="45" rows="6" aria-required="true"};"></textarea>' . 
 								  '<script type="text/javascript">document.getElementById("comment").onkeydown = function (moz_ev){var ev = null;if (window.event){ev = window.event;}else{ev = moz_ev;}if (ev != null && ev.ctrlKey && ev.keyCode == 13){document.getElementById("submit").click();}}</script></p>',
 		'comment_notes_before' => '',
 		'comment_notes_after'  => '',

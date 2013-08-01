@@ -1317,8 +1317,8 @@ a.comment-edit-link:hover {
 
 /* Comment form */
 #respond {
-	margin-top: 48px;
-	margin-top: 3.428571429rem;
+	margin-top: 32px;
+	margin-top: 2.28571428rem;
 }
 #respond h3#reply-title {
 	font-size: 16px;
@@ -1333,8 +1333,8 @@ a.comment-edit-link:hover {
 	font-size: 0.857142857rem;
 }
 #respond form {
-	margin: 24px 0;
-	margin: 1.714285714rem 0;
+	margin: 12px 0;
+	margin: 0.85714285rem 0;
 }
 #respond form p {
 	margin: 11px 0;
@@ -1347,6 +1347,15 @@ a.comment-edit-link:hover {
 #respond form label {
 	display: inline;
 	line-height: 1.714285714;
+	margin-left: 10px;
+	margin-left: 0.714285714rem;
+}
+.wp-smilies {
+	margin-left: 0 !important;
+}
+.wp-smilies a {
+	margin-left: 5px;
+	margin-left: 0.357142857rem;
 }
 #respond form input[type="text"],
 #respond form textarea {
@@ -1355,8 +1364,8 @@ a.comment-edit-link:hover {
 	font-size: 12px;
 	font-size: 0.857142857rem;
 	line-height: 1.714285714;
-	padding: 10px;
-	padding: 0.714285714rem;
+	padding: 2px 4px;
+	padding: 0.142857142rem 0.285714285rem;
 	width: 100%;
 }
 #respond form p.form-allowed-tags {
@@ -1597,7 +1606,7 @@ img#wpstats {
 		font-size: 1.571428571rem;
 	}
 	#respond form input[type="text"] {
-		width: 46.333333333%;
+		width: 36.333333333%;
 	}
 	#respond form textarea.blog-textarea {
 		width: 79.666666667%;
