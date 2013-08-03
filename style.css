@@ -1185,6 +1185,10 @@ article.format-quote .entry-content blockquote {
 	padding-right: 1.428571429rem;
 	border-right: 1px solid #d1d9db;
 }
+.comment-gravatar img {
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
 #comments ol li {
 	border-bottom: 4px double #ededed;
 }
