@@ -554,10 +554,8 @@ a:hover {
 
 /* Navigation Menu */
 .main-navigation {
-/*
 	margin-top: 8px;
 	margin-top: 0.571428571rem;
-*/
 	text-align: center;
 }
 .main-navigation li {
@@ -848,6 +846,13 @@ article.sticky .featured-post {
 	font-size: 12px;
 	font-size: 0.857142857rem;
 	line-height: 2;
+	padding: 2px 4px;
+	color: #d14;
+	background-color: #f7f7f9;
+	border: 1px solid #e1e1e8;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 }
 .entry-content pre,
 .comment-content pre {
@@ -1186,8 +1191,8 @@ article.format-quote .entry-content blockquote {
 	border-right: 1px solid #d1d9db;
 }
 .comment-gravatar img {
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
 }
 #comments ol li {
 	border-bottom: 4px double #ededed;
