@@ -651,7 +651,25 @@ footer[role="contentinfo"] a {
 footer[role="contentinfo"] a:hover {
 	color: #21759b;
 }
-
+.site-info {
+	height: 22px;
+	line-height: 22px;
+}
+.site-info .left{
+	float: left;
+	text-align: left;
+	width: 33%;
+}
+.site-info .middle {
+	float: left;
+	text-align: center;
+	width: 33%;
+}
+.site-info .right {
+	float: right;
+	text-align: right;
+	width: 33%;
+}
 
 /* =Main content and comment content
 -------------------------------------------------------------- */

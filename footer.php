@@ -13,9 +13,9 @@
 	</div><!-- #main .wrapper -->
 	<footer id="colophon" role="contentinfo">
 		<div class="site-info">
-			总访问量 : <?php echo lo_all_view(); ?>
-			<?php do_action( 'twentytwelve_credits' ); ?>
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'twentytwelve' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'twentytwelve' ); ?>"><?php printf( __( 'Proudly powered by %s', 'twentytwelve' ), 'WordPress' ); ?></a>
+			<p class="left">&copy; 2013 · <a href="<?php bloginfo('url');?>"><?php bloginfo('name');?></a></p>
+			<p class="middle">总访问量 : <?php echo lo_all_view(); ?></p>
+			<p class="right">WordPress &amp; Theme2012Plus</p>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
