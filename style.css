@@ -591,13 +591,13 @@ section[role="banner"] {
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
 	hyphens: auto;
-	margin-bottom: 48px;
-	margin-bottom: 3.428571429rem;
+	margin-bottom: 48px;36px;
+	margin-bottom: 2.571428571rem;
 	word-wrap: break-word;
 }
 .widget-area .widget h3 {
-	margin-bottom: 24px;
-	margin-bottom: 1.714285714rem;
+	margin-bottom: 12px;
+	margin-bottom: 0.85714285rem;
 }
 .widget-area .widget p,
 .widget-area .widget li,
@@ -605,6 +605,8 @@ section[role="banner"] {
 	font-size: 13px;
 	font-size: 0.928571429rem;
 	line-height: 1.846153846;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .widget-area .widget p {
 	margin-bottom: 24px;
@@ -627,6 +629,14 @@ section[role="banner"] {
 }
 .widget-area #s {
 	width: 53.66666666666%; /* define a width to avoid dropping a wider submit button */
+}
+.widget_categories ul {
+	display: block;
+	overflow: auto;
+}
+.widget_categories  li{
+	width: 50%;
+	float: left;
 }
 
 /* Footer */
