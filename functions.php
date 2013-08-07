@@ -22,6 +22,12 @@
  * @since Twenty Twelve 1.0
  */
 
+ /**
+ * remove head info By SingleX
+ */
+	foreach(array('rsd_link','index_rel_link','start_post_rel_link', 'wlwmanifest_link', 'parent_post_rel_link', 'adjacent_posts_rel_link_wp_head' ) as $xx)
+	remove_action('wp_head',$xx); 
+ 
 /**
  * Sets up the content width value based on the theme's design and stylesheet.
  */
