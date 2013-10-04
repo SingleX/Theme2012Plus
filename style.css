@@ -413,6 +413,17 @@ img.wp-smiley,
 	text-align: right;
 	width: 50%;
 }
+.nav-previous,
+.previous-image,
+.nav-next,
+.next-image {
+    overflow: hidden;
+    white-space:nowrap;
+    /*文本溢出用"..."表示*/
+    text-overflow:ellipsis; /*适用IE*/
+    -o-text-overflow:ellipsis; /*适用opera*/
+    -moz-binding: url('ellipsis.xml#ellipsis');/*适用火狐(firefox通过XUL实现效果)*/
+}
 .nav-single + .comments-area,
 #comment-nav-above {
 	margin: 24px 0;
@@ -694,15 +705,14 @@ footer[role="contentinfo"] a:hover {
 /* 添加对 class="info-calendar|info-user|info-views|info-comment"的控制 */
 .info-calendar,
 .info-user ,
+.info-category ,
 .info-views {
-	margin-right: 10px;
-	margin-right: 0.714285714rem;
 	float: left;
 }
 .info-comment {
 	float: right;
 }
-.info-category, 
+
 .info-tags {
 	margin-right: 10px;
 	margin-right: 0.714285714rem;
@@ -755,6 +765,9 @@ article.sticky .featured-post {
 	margin-bottom: 24px;
 	margin-bottom: 1.714285714rem;
 	text-align: center;
+}
+.entry-content {
+	padding-top: 10px;
 }
 .entry-content,
 .entry-summary,
@@ -819,7 +832,7 @@ article.sticky .featured-post {
 .comment-content p,
 .mu_register p {
 	margin: 0 0 24px;
-	margin: 0 0 1.714285714rem;
+	margin: 0 0 1rem;
 	line-height: 1.714285714;
 }
 .entry-content ol,
@@ -1829,4 +1842,29 @@ img#wpstats {
 		margin-left: 50px;
 		margin-left: 3.57142857rem;
 	}
+}
+
+/*
+Archives存档页
+*/
+#archive-title {
+	font-size: 20px;
+    font-weight: normal;
+}
+#expand_collapse {
+	float: right;
+	margin-top: 20px;
+}
+#archives {
+	margin: 20px 0 0 20px;
+}
+#archives ul {clear: both;}
+#archives ul li {
+	margin: 20px 0px;
+}
+.archives-yearmonth {
+	font-weight: bold;
+}
+.archives-monthlisting {
+	margin: 5px;
 }

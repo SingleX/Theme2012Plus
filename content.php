@@ -25,9 +25,10 @@
 			<?php endif; // is_single() ?>
 			<hr/>
 			<div class="entry-meta">
-				<span class="info-calendar"><i class="icon-calendar"></i> <?php the_time('Y.m.d'); ?></span>
-				<span class="info-user"><i class="icon-user"></i> <?php the_author(); ?></span>
-				<span class="info-views"><i class="icon-eye-open"></i> <?php get_post_views($post->ID); ?></span>
+				<span class="info-calendar"><?php the_time('Y.m.d'); ?>&nbsp;/&nbsp;</span>
+				<span class="info-category"><?php the_category(', ') ?>&nbsp;/&nbsp;</span>
+				<span class="info-views"><?php get_post_views($post->ID); ?></span>
+				<?php edit_post_link( __( 'Edit', 'twentytwelve' ), '<span class="edit-link">&nbsp;/&nbsp;', '</span>' ); ?>
 				<?php if ( comments_open() ) : //修改评论显示?>
 					<span class="info-comment"><i class="icon-comment"></i> <?php comments_popup_link('No Reply', '1 Reply', '% Replies'); ?></span>
 				<?php endif; // comments_open() ?>
@@ -45,7 +46,7 @@
 		</div><!-- .entry-content -->
 		<?php endif; ?>
 		<footer class="entry-meta">
-			<?php twentytwelve_entry_meta(); ?><?php edit_post_link( __( 'Edit', 'twentytwelve' ), '<span class="edit-link"><i class="icon-edit"></i> ', '</span>' ); ?>
+			<?php if ( is_single() ) : the_tags('Tags: ', ' , ' , ''); endif;?>
 			<?php if ( is_singular() && get_the_author_meta( 'description' ) && is_multi_author() ) : // If a user has filled out their description and this is a multi-author blog, show a bio on their entries. ?>
 				<div class="author-info">
 					<div class="author-avatar">
