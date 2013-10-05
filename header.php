@@ -22,7 +22,19 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width" />
-<title><?php wp_title( '|', true, 'right' ); ?></title>
+<?php $options = get_option('singlex_options'); ?>
+<title><?php 
+if(is_home()){
+	echo bloginfo( 'name' );
+}elseif(is_tag()){
+	echo "Tag: ";
+	echo wp_title( '|', true, 'right' );
+}else {
+	echo wp_title( '|', true, 'right' );
+} ?></title>
+<?php if (is_single()) {$description = cut_str(strip_tags(apply_filters('the_content',$post->post_content)),200);$keywords = "";$tags = wp_get_post_tags($post->ID);foreach ($tags as $tag ) {$keywords = $keywords . $tag->name . ",";}} else if (is_category()) {$description = category_description();}?>
+<meta name="description" content="<?php if (is_home()) { echo ($options['description_content']);} else echo $description;?>"/>
+<meta name="keywords" content="<?php if (is_home()) { echo ($options['keyword_content']);} else echo $keywords;?>"/>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <link rel="stylesheet" href="<?php bloginfo('template_url');?>/css/bootstrap.css" type="text/css" media="all" />

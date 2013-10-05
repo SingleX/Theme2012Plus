@@ -154,7 +154,6 @@ img {
 /* Small headers */
 .archive-title,
 .page-title,
-.widget-title,
 .entry-content th,
 .comment-content th {
 	font-size: 11px;
@@ -407,11 +406,14 @@ img.wp-smiley,
 	float: left;
 	width: 50%;
 }
+.nav-nextarray{
+	float: right;
+}
 .nav-next,
 .next-image {
 	float: right;
 	text-align: right;
-	width: 50%;
+	width: 45%;
 }
 .nav-previous,
 .previous-image,
@@ -424,6 +426,7 @@ img.wp-smiley,
     -o-text-overflow:ellipsis; /*适用opera*/
     -moz-binding: url('ellipsis.xml#ellipsis');/*适用火狐(firefox通过XUL实现效果)*/
 }
+
 .nav-single + .comments-area,
 #comment-nav-above {
 	margin: 24px 0;
@@ -1868,3 +1871,45 @@ Archives存档页
 .archives-monthlisting {
 	margin: 5px;
 }
+
+/*
+	自定义侧边栏小工具
+*/
+.recentcommli img.avatar {
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #E6E6E6;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    padding: 2px;
+}
+.recentcommli{
+	border-bottom: 1px solid #EDEDED;
+    line-height: 20px;
+    margin-bottom: 5px;
+    padding: 5px 0;
+}
+.recentcommentsavatar {
+	float:left;
+	padding: 0 10px 0 0;
+}
+.recentcomments-date {
+    color: #AAAAAA;
+    float: left;
+	line-height: 14px;
+	font-size: 12px;
+}
+.recentcomments-author {
+    color: #AAAAAA;
+    float: right;
+	line-height: 14px;
+	font-size: 12px;
+}
+/* 友情链接 */
+.blogroll{width:100%;display:block;overflow:auto;zoom:1;}
+.blogroll li{float:left;width:50%;display:block;}
+
+
+
+
+
+

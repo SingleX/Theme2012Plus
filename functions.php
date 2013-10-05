@@ -1,33 +1,12 @@
 <?php
-/**
- * Twenty Twelve functions and definitions.
- *
- * Sets up the theme and provides some helper functions, which are used
- * in the theme as custom template tags. Others are attached to action and
- * filter hooks in WordPress to change core functionality.
- *
- * When using a child theme (see http://codex.wordpress.org/Theme_Development and
- * http://codex.wordpress.org/Child_Themes), you can override certain functions
- * (those wrapped in a function_exists() call) by defining them first in your child theme's
- * functions.php file. The child theme's functions.php file is included before the parent
- * theme's file, so the child theme functions would be used.
- *
- * Functions that are not pluggable (not wrapped in function_exists()) are instead attached
- * to a filter or action hook.
- *
- * For more information on hooks, actions, and filters, see http://codex.wordpress.org/Plugin_API.
- *
- * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
- */
-
  /**
  * remove head info By SingleX
  */
 	foreach(array('rsd_link','index_rel_link','start_post_rel_link', 'wlwmanifest_link', 'parent_post_rel_link', 'adjacent_posts_rel_link_wp_head' ) as $xx)
 	remove_action('wp_head',$xx); 
- 
+	
+	include_once('inc/setting.php');
+
 /**
  * Sets up the content width value based on the theme's design and stylesheet.
  */
@@ -422,7 +401,46 @@ function twentytwelve_customize_preview_js() {
 }
 add_action( 'customize_preview_init', 'twentytwelve_customize_preview_js' );
 
-
+function cut_str($sourcestr,$cutlength)
+{
+$returnstr="";
+$i=0;
+$n=0;
+$str_length=strlen($sourcestr);
+while (($n<$cutlength) and ($i<=$str_length))
+{
+$temp_str=substr($sourcestr,$i,1);
+$ascnum=Ord($temp_str);
+if ($ascnum>=224)
+{
+$returnstr=$returnstr.substr($sourcestr,$i,3); 
+$i=$i+3;
+$n++;
+}
+elseif ($ascnum>=192) 
+{
+$returnstr=$returnstr.substr($sourcestr,$i,2); 
+$i=$i+2;
+$n++;
+}
+elseif ($ascnum>=65 && $ascnum<=90)
+{
+$returnstr=$returnstr.substr($sourcestr,$i,1);
+$i=$i+1;
+$n++;
+}
+else
+{
+$returnstr=$returnstr.substr($sourcestr,$i,1);
+$i=$i+1;
+$n=$n+0.5;
+}
+}
+if ($str_length>$cutlength){
+$returnstr = $returnstr . "...";
+}
+return $returnstr;
+}
 /**
  * 站点信息统计，替代post-views插件
  * 
@@ -517,11 +535,6 @@ function theme2012plus_archives_list() {
 		 $postresults = $wpdb->get_results($q);
 		 if ($postresults) {
 			 $text = sprintf('%s %d', $month[zeroise($monthresult->month,2)], $monthresult->year);
-			 
-			$year = mysql2date('Y', $postresult->post_date);
-			$month = mysql2date('n', $postresult->post_date);
-			$day = mysql2date('d', $postresult->post_date);
-
 			 $postcount = count($postresults);
 			 $output .= '<ul class="archives-list"><li><span class="archives-yearmonth">' . $text . ' &nbsp;(' . count($postresults) . '&nbsp;篇文章)</span><ul class="archives-monthlisting">' . "\n";
 			 foreach ($postresults as $postresult) {
@@ -548,3 +561,146 @@ function theme2012plus_archives_list() {
  }
  echo $output;
 }
+
+/* 小工具们~~~~ */
+
+if( function_exists( 'register_sidebar_widget' ) ) {   
+	register_sidebar_widget('Theme2012Plus·分类目录','widget_category'); //显示双栏分类目录
+}
+function widget_category() { include(TEMPLATEPATH . '/inc/widget_category.php'); }
+
+//热点文章
+class singlex_widget extends WP_Widget {
+     function singlex_widget() {
+         $widget_ops = array('description' => '按阅读量显示全站范围的文章');
+         $this->WP_Widget('singlex_widget', 'Theme2012Plus·热点文章', $widget_ops);
+     }
+     function widget($args, $instance) {
+         extract($args);
+         $title = apply_filters('widget_title',esc_attr($instance['title']));
+         $limit = strip_tags($instance['limit']);
+         echo $before_widget.$before_title.$title.$after_title;
+?> 
+         <ul>
+            <?php
+			global $wpdb, $post;
+			$mode = '';
+			$term_id = 0;
+			$aftercount = 'Views';
+			$output = '';
+			$mode = ($mode == '') ? 'post' : $mode;
+			$type_sql = ($mode != 'both') ? "AND post_type='$mode'" : '';
+			$term_sql = (is_array($term_id)) ? "AND $wpdb->term_taxonomy.term_id IN (" . join(',', $term_id) . ')' : ($term_id != 0 ? "AND $wpdb->term_taxonomy.term_id = $term_id" : '');
+			$term_sql.= $term_id ? " AND $wpdb->term_taxonomy.taxonomy != 'link_category'" : '';
+			$inr_join = $term_id ? "INNER JOIN $wpdb->term_relationships ON ($wpdb->posts.ID = $wpdb->term_relationships.object_id) INNER JOIN $wpdb->term_taxonomy ON ($wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id)" : '';
+			// database query
+			$most_viewed = $wpdb->get_results("SELECT ID, post_date, post_title, (meta_value+0) AS views FROM $wpdb->posts LEFT JOIN $wpdb->postmeta ON ($wpdb->posts.ID = $wpdb->postmeta.post_id) $inr_join WHERE post_status = 'publish' AND post_password = '' $term_sql $type_sql AND meta_key = 'views' GROUP BY ID ORDER BY views DESC LIMIT $limit");
+			if ($most_viewed) {
+				foreach ($most_viewed as $viewed) {
+					$post_ID    = $viewed->ID;
+					$post_views = number_format($viewed->views);
+					$post_title = esc_attr($viewed->post_title);
+					$get_permalink = esc_attr(get_permalink($post_ID));
+					$output .= "<li><a href=\"$get_permalink\" title=\"$post_title  $post_views $aftercount\">$post_title</a></li>";
+				}
+			} else {
+				$output = "<li>N/A</li>";
+			}
+			echo $output;
+            ?>
+        </ul>
+<?php         
+         echo $after_widget;
+     }
+     function update($new_instance, $old_instance) {
+         if (!isset($new_instance['submit'])) {
+             return false;
+         }
+         $instance = $old_instance;
+         $instance['title'] = strip_tags($new_instance['title']);
+         $instance['limit'] = strip_tags($new_instance['limit']);
+         return $instance;
+     }
+     function form($instance) {
+         global $wpdb;
+         $instance = wp_parse_args((array) $instance, array('title'=> '','limit' => ''));
+         $title = esc_attr($instance['title']);
+         $limit = strip_tags($instance['limit']);
+ ?>
+        <p><label for="<?php echo $this->get_field_id('title'); ?>">标题：<input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></label></p> 
+        <p><label for="<?php echo $this->get_field_id('limit'); ?>">数量：<input id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo $limit; ?>" /></label></p>
+		<input type="hidden" id="<?php echo $this->get_field_id('submit'); ?>" name="<?php echo $this->get_field_name('submit'); ?>" value="1" />
+ <?php
+     }
+ }
+ add_action('widgets_init', 'singlex_widget_init');
+ function singlex_widget_init() {
+     register_widget('singlex_widget');
+ }
+ 
+//最近评论
+class doofer_widget extends WP_Widget {
+     function doofer_widget() {
+         $widget_ops = array('description' => '显示最近的读者评论（带头像）');
+         $this->WP_Widget('doofer_widget', 'Theme2012Plus·最近评论', $widget_ops);
+     }
+     function widget($args, $instance) {
+         extract($args);
+         $title = apply_filters('widget_title',esc_attr($instance['title']));
+         $limit = strip_tags($instance['limit']);
+		 $email = strip_tags($instance['email']);
+         echo $before_widget.$before_title.$title.$after_title;
+?> 
+         <ul>
+            <?php
+                global $wpdb;
+                $limit_num = $limit;
+                //$my_email = "'" . get_bloginfo ('admin_email') . "'";
+				$my_email ="'" . $email . "'";
+                $rc_comms = $wpdb->get_results("SELECT ID, post_title, comment_ID, comment_author,comment_author_email,comment_date,comment_content FROM $wpdb->comments LEFT OUTER JOIN $wpdb->posts ON ($wpdb->comments.comment_post_ID  = $wpdb->posts.ID) WHERE comment_approved = '1' AND comment_type = '' AND post_password = '' AND comment_author_email != $my_email ORDER BY comment_date_gmt DESC LIMIT $limit_num ");
+                $rc_comments = '';
+                foreach ($rc_comms as $rc_comm) { $rc_comments .= "<li class=\"recentcommli\">
+				<div class='clearfix'>
+					<span class='recentcommentsavatar'>" . get_avatar($rc_comm,$size='32') ."</span>
+					<a href='". get_comment_link($rc_comm->comment_ID) . "' title='在《" . $rc_comm->post_title .  "》发表的评论'>". $rc_comm->comment_content."</a>
+					<br/>
+					<span class=\"recentcomments-date\">".mysql2date('Y-m-d', $rc_comm->comment_date)."</span>
+					<span class=\"recentcomments-author\"> by ".$rc_comm->comment_author."</span>
+				</div></li>\n";}
+				$rc_comments = convert_smilies($rc_comments);
+                echo $rc_comments;
+            ?>
+        </ul>
+<?php         
+         echo $after_widget;
+     }
+     function update($new_instance, $old_instance) {
+         if (!isset($new_instance['submit'])) {
+             return false;
+         }
+         $instance = $old_instance;
+         $instance['title'] = strip_tags($new_instance['title']);
+         $instance['limit'] = strip_tags($new_instance['limit']);
+		 $instance['email'] = strip_tags($new_instance['email']);
+         return $instance;
+     }
+     function form($instance) {
+         global $wpdb;
+         $instance = wp_parse_args((array) $instance, array('title'=> '','limit' => '', 'email' => ''));
+         $title = esc_attr($instance['title']);
+         $limit = strip_tags($instance['limit']);
+		 $email = strip_tags($instance['email']);
+ ?>
+        <p><label for="<?php echo $this->get_field_id('title'); ?>">标题：<input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></label></p> 
+        <p><label for="<?php echo $this->get_field_id('limit'); ?>">数量：<input id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo $limit; ?>" /></label></p>
+        <p><label for="<?php echo $this->get_field_id('email'); ?>">排除以下邮箱的回复（留空则不排除）: <br><input class="widefat" id="<?php echo $this->get_field_id('email'); ?>" name="<?php echo $this->get_field_name('email'); ?>" type="text" value="<?php echo $email; ?>" /></label></p>
+		<input type="hidden" id="<?php echo $this->get_field_id('submit'); ?>" name="<?php echo $this->get_field_name('submit'); ?>" value="1" />
+ <?php
+     }
+ }
+ add_action('widgets_init', 'doofer_widget_init');
+ function doofer_widget_init() {
+     register_widget('doofer_widget');
+ }
+ 
+ 
