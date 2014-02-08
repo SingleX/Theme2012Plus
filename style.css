@@ -1168,12 +1168,9 @@ article.format-quote .entry-content blockquote {
 }
 
 /* Status posts */
-.format-status .entry-header {
-	margin-bottom: 24px;
-	margin-bottom: 1.714285714rem;
-}
 .format-status .entry-header header {
 	display: inline-block;
+	width: 554px;
 }
 .format-status .entry-header h1 {
 	font-size: 15px;
