@@ -30,7 +30,7 @@
 				<span class="info-views"><?php get_post_views($post->ID); ?></span>
 				<?php edit_post_link( __( 'Edit', 'twentytwelve' ), '<span class="edit-link">&nbsp;/&nbsp;', '</span>' ); ?>
 				<?php if ( comments_open() ) : //修改评论显示?>
-					<span class="info-comment"><i class="icon-comment"></i> <?php comments_popup_link('No Reply', '1 Reply', '% Replies'); ?></span>
+					<span class="info-comment"><?php comments_popup_link('No Reply', '1 Reply', '% Replies'); ?></span>
 				<?php endif; // comments_open() ?>
 				<div class="clear"></div>
 			</div><!-- .entry-meta -->
