@@ -401,45 +401,42 @@ function twentytwelve_customize_preview_js() {
 }
 add_action( 'customize_preview_init', 'twentytwelve_customize_preview_js' );
 
-function cut_str($sourcestr,$cutlength)
-{
-$returnstr="";
-$i=0;
-$n=0;
-$str_length=strlen($sourcestr);
-while (($n<$cutlength) and ($i<=$str_length))
-{
-$temp_str=substr($sourcestr,$i,1);
-$ascnum=Ord($temp_str);
-if ($ascnum>=224)
-{
-$returnstr=$returnstr.substr($sourcestr,$i,3); 
-$i=$i+3;
-$n++;
-}
-elseif ($ascnum>=192) 
-{
-$returnstr=$returnstr.substr($sourcestr,$i,2); 
-$i=$i+2;
-$n++;
-}
-elseif ($ascnum>=65 && $ascnum<=90)
-{
-$returnstr=$returnstr.substr($sourcestr,$i,1);
-$i=$i+1;
-$n++;
-}
-else
-{
-$returnstr=$returnstr.substr($sourcestr,$i,1);
-$i=$i+1;
-$n=$n+0.5;
-}
-}
-if ($str_length>$cutlength){
-$returnstr = $returnstr . "...";
-}
-return $returnstr;
+// 截断字符
+function cut_str($sourcestr,$cutlength) {
+	$returnstr="";
+	$i=0;
+	$n=0;
+	$str_length=strlen($sourcestr);
+	while (($n<$cutlength) and ($i<=$str_length)) {
+		$temp_str=substr($sourcestr,$i,1);
+		$ascnum=Ord($temp_str);
+		if ($ascnum>=224) {
+			$returnstr=$returnstr.substr($sourcestr,$i,3); 
+			$i=$i+3;
+			$n++;
+		}
+		elseif ($ascnum>=192) {
+			$returnstr=$returnstr.substr($sourcestr,$i,2); 
+			$i=$i+2;
+			$n++;
+		}
+		elseif ($ascnum>=65 && $ascnum<=90)	{
+			$returnstr=$returnstr.substr($sourcestr,$i,1);
+			$i=$i+1;
+			$n++;
+		}
+		else {
+			$returnstr=$returnstr.substr($sourcestr,$i,1);
+			$i=$i+1;
+			$n=$n+0.5;
+		}
+	}
+	/*
+	if ($str_length > $cutlength){
+		$returnstr = $returnstr . "...";
+	}
+	*/
+	return $returnstr;
 }
 /**
  * 站点信息统计，替代post-views插件
@@ -662,9 +659,9 @@ class doofer_widget extends WP_Widget {
                 foreach ($rc_comms as $rc_comm) { $rc_comments .= "<li class=\"recentcommli\">
 				<div class='clearfix'>
 					<span class='recentcommentsavatar'>" . get_avatar($rc_comm,$size='32') ."</span>
-					<a href='". get_comment_link($rc_comm->comment_ID) . "' title='在《" . $rc_comm->post_title .  "》发表的评论'>". $rc_comm->comment_content."</a>
+					<a href='". get_comment_link($rc_comm->comment_ID) . "' title='在《" . $rc_comm->post_title .  "》发表的评论'>". cut_str($rc_comm->comment_content, 18) ."</a>
 					<br/>
-					<span class=\"recentcomments-date\">".mysql2date('Y-m-d', $rc_comm->comment_date)."</span>
+					<span class=\"recentcomments-date\">".mysql2date('Y.m.d', $rc_comm->comment_date)."</span>
 					<span class=\"recentcomments-author\"> by ".$rc_comm->comment_author."</span>
 				</div></li>\n";}
 				$rc_comments = convert_smilies($rc_comments);
