@@ -309,7 +309,7 @@ function twentytwelve_entry_meta() {
 	
 	// Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's name.
 	/*修改文章信息显示（1：分类；2：标签；3：日期；4：作者）*/
-	$utility_text = __( '<span class="info-category"><i class="icon-folder-open"></i> %1$s</span><span class="info-tags"><i class="icon-tags"></i> %2$s</span>', 'twentytwelve' );
+	$utility_text = __( '<span class="info-category">%1$s</span><span class="info-tags">%2$s</span>', 'twentytwelve' );
 	printf(
 		$utility_text,
 		$categories_list,
