@@ -694,6 +694,12 @@ footer[role="contentinfo"] a:hover {
 	text-align: right;
 	width: 33%;
 }
+.site-info .hide {
+	width:0px;
+	height:0px;
+	overflow:hidden;
+	display:none;
+}
 
 /* =Main content and comment content
 -------------------------------------------------------------- */
