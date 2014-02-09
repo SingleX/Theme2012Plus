@@ -712,6 +712,9 @@ footer[role="contentinfo"] a:hover {
 	clear: both;
 }
 /* 添加对 class="info-calendar|info-user|info-views|info-comment"的控制 */
+.info-top {
+	color: #EA0000;
+}
 .info-calendar,
 .info-user ,
 .info-category ,
