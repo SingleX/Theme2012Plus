@@ -9,6 +9,6 @@ WordPress官方主题TwentyTwelve二次开发
 > 
 > Author : SingleX
 > 
-> Version : 1.0 (Beta)
+> Version : 1.0
 
-###...Updating...
+![github](https://github.com/SingleX/Theme2012Plus/blob/master/screenshot.png "github")
