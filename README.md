@@ -9,6 +9,6 @@ WordPress官方主题TwentyTwelve二次开发
 > 
 > Author : SingleX
 > 
-> Version : 1.0
+> Version : 1.0 (Beta)
 
 ###...Updating...
