@@ -2,9 +2,9 @@
 //Remove by SingleX
 foreach(array('rsd_link','index_rel_link','start_post_rel_link', 'wlwmanifest_link', 'parent_post_rel_link', 'adjacent_posts_rel_link_wp_head' ) as $xx)
 remove_action('wp_head',$xx);
+include_once('inc/setting.php');//包含此文件
+add_filter( 'pre_option_link_manager_enabled', '__return_true' );//默认开启友情链接
 
-include_once('inc/setting.php');
-	
 if ( ! isset( $content_width ) )
 	$content_width = 625;
 
