@@ -26,8 +26,6 @@ if(is_home()){
 <meta name="description" content="<?php if (is_home()) { echo ($options['description_content']);} else echo $description;?>"/>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-<link rel="stylesheet" href="<?php bloginfo('template_url');?>/css/bootstrap.css" type="text/css" media="all" />
-<?php // Loads HTML5 JavaScript file to add support for HTML5 elements in older IE versions. ?>
 <!--[if lt IE 9]>
 <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
 <![endif]-->
