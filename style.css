@@ -1645,6 +1645,14 @@ img#wpstats {
 	}
 }
 
+/* Minimum width of 1050 pixels. */
+@media screen and (max-width: 1050px) {
+	body .format-status .entry-header header {
+		display: inline-block;
+		width: 100%;
+	}
+}
+
 
 /* =Print
 ----------------------------------------------- */
