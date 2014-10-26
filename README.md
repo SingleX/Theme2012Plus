@@ -13,6 +13,6 @@ WordPress官方主题TwentyTwelve二次开发
 > Version : 1.0
 >
 
-Last Update : 2014/2/9
+Last Update : 2014/10/26
 
 ![github](https://abxfca.bn1.livefilestore.com/y2pOXVuZHVbNYjGPU19Uv6CKJhztvj51f3X1teSFUWEhlzcbHE-jfd72ABisOPfIAgJKotpC0noWdumA6GH748EH6RenpO2xEigJ17NahkSWb0/Theme2012Plus-screenshot.png "github")
